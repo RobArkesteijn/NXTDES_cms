@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_sidemenu_travel_infos",
+  "info": {
+    "displayName": "Travel Info",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "string",
+      "required": true,
+      "default": "/travel-mistakes/"
+    }
+  }
+}

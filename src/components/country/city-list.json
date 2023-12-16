@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_country_city_lists",
+  "info": {
+    "displayName": "City List"
+  },
+  "options": {},
+  "attributes": {
+    "city": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
