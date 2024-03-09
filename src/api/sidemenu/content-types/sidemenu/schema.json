@@ -13,13 +13,11 @@
   "pluginOptions": {},
   "attributes": {
     "countries": {
-      "displayName": "Countries",
-      "type": "component",
-      "repeatable": true,
-      "component": "sidemenu.countries",
-      "required": false
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::country.country"
     },
-    "travel_info": {
+    "flight_info": {
       "displayName": "Travel Info",
       "type": "component",
       "repeatable": true,

@@ -40,6 +40,9 @@
         "videos",
         "audios"
       ]
+    },
+    "icon": {
+      "type": "string"
     }
   }
 }
