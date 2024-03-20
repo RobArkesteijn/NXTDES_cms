@@ -43,6 +43,17 @@
     },
     "icon": {
       "type": "string"
+    },
+    "continent": {
+      "type": "enumeration",
+      "enum": [
+        "Europe",
+        "Africa",
+        "Asia",
+        "North America",
+        "South America",
+        "Oceania"
+      ]
     }
   }
 }

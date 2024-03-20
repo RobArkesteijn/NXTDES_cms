@@ -832,6 +832,9 @@ export interface ApiCountryCountry extends Schema.CollectionType {
     city_list: Attribute.Component<'country.city-list', true>;
     hero_image: Attribute.Media & Attribute.Required;
     icon: Attribute.String;
+    continent: Attribute.Enumeration<
+      ['Europe', 'Africa', 'Asia', 'North America', 'South America', 'Oceania']
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -850,40 +853,65 @@ export interface ApiCountryCountry extends Schema.CollectionType {
   };
 }
 
-export interface ApiSidemenuSidemenu extends Schema.SingleType {
-  collectionName: 'sidemenus';
+export interface ApiUpcDestinationUpcDestination extends Schema.CollectionType {
+  collectionName: 'upc_destinations';
   info: {
-    singularName: 'sidemenu';
-    pluralName: 'sidemenus';
-    displayName: 'Sidemenu';
+    singularName: 'upc-destination';
+    pluralName: 'upc-destinations';
+    displayName: 'UpcDestinations';
     description: '';
   };
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
-    countries: Attribute.Relation<
-      'api::sidemenu.sidemenu',
-      'oneToMany',
-      'api::country.country'
-    >;
-    flight_info: Attribute.Component<'sidemenu.travel-info', true>;
-    upc_destination: Attribute.Component<'sidemenu.upcoming-destination', true>;
+    destination: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    icon: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    continent: Attribute.Enumeration<
+      ['Europe', 'Africa', 'Asia', 'North America', 'South America', 'Oceania']
+    > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::sidemenu.sidemenu',
+      'api::upc-destination.upc-destination',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::sidemenu.sidemenu',
+      'api::upc-destination.upc-destination',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::upc-destination.upc-destination',
+      'oneToMany',
+      'api::upc-destination.upc-destination'
+    >;
+    locale: Attribute.String;
   };
 }
 
@@ -907,7 +935,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::city.city': ApiCityCity;
       'api::country.country': ApiCountryCountry;
-      'api::sidemenu.sidemenu': ApiSidemenuSidemenu;
+      'api::upc-destination.upc-destination': ApiUpcDestinationUpcDestination;
     }
   }
 }
