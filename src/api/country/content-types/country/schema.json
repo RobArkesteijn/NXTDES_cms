@@ -54,6 +54,9 @@
         "South America",
         "Oceania"
       ]
+    },
+    "country_native": {
+      "type": "string"
     }
   }
 }
