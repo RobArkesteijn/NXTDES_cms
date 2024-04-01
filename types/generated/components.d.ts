@@ -17,10 +17,21 @@ export interface HomeHighlighted extends Schema.Component {
     description: '';
   };
   attributes: {
-    image: Attribute.Media & Attribute.Required;
     headline: Attribute.String;
     title: Attribute.String & Attribute.Required;
     description: Attribute.RichText;
+    countries: Attribute.Component<'home.higlighted-countries', true>;
+  };
+}
+
+export interface HomeHiglightedCountries extends Schema.Component {
+  collectionName: 'components_home_higlighted_countries';
+  info: {
+    displayName: 'HiglightedCountries';
+  };
+  attributes: {
+    country: Attribute.String;
+    image: Attribute.Media;
   };
 }
 
@@ -29,6 +40,7 @@ declare module '@strapi/types' {
     export interface Components {
       'country.city-list': CountryCityList;
       'home.highlighted': HomeHighlighted;
+      'home.higlighted-countries': HomeHiglightedCountries;
     }
   }
 }

@@ -988,7 +988,7 @@ export interface ApiHomeHome extends Schema.SingleType {
           localized: true;
         };
       }>;
-    Highlighted: Attribute.Component<'home.highlighted', true> &
+    Highlighted: Attribute.Component<'home.highlighted'> &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;

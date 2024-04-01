@@ -6,14 +6,6 @@
   },
   "options": {},
   "attributes": {
-    "image": {
-      "type": "media",
-      "multiple": false,
-      "required": true,
-      "allowedTypes": [
-        "images"
-      ]
-    },
     "headline": {
       "type": "string"
     },
@@ -23,6 +15,12 @@
     },
     "description": {
       "type": "richtext"
+    },
+    "countries": {
+      "displayName": "HiglightedCountries",
+      "type": "component",
+      "repeatable": true,
+      "component": "home.higlighted-countries"
     }
   }
 }

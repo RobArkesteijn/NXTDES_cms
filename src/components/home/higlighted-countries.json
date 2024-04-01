@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_home_higlighted_countries",
+  "info": {
+    "displayName": "HiglightedCountries"
+  },
+  "options": {},
+  "attributes": {
+    "country": {
+      "type": "string"
+    },
+    "image": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}
