@@ -17,7 +17,7 @@ export interface HomeHighlighted extends Schema.Component {
     description: '';
   };
   attributes: {
-    images: Attribute.Media & Attribute.Required;
+    image: Attribute.Media & Attribute.Required;
     headline: Attribute.String;
     title: Attribute.String & Attribute.Required;
     description: Attribute.RichText;
