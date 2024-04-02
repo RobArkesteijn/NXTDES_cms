@@ -23,11 +23,11 @@
       "multiple": false,
       "required": true
     },
-    "blog": {
+    "blogs": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "oneToMany",
       "target": "api::blog.blog",
-      "inversedBy": "authors"
+      "mappedBy": "author"
     }
   }
 }

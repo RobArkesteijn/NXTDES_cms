@@ -801,9 +801,9 @@ export interface ApiAuthorAuthor extends Schema.CollectionType {
   attributes: {
     name: Attribute.String & Attribute.Required;
     avatar: Attribute.Media & Attribute.Required;
-    blog: Attribute.Relation<
+    blogs: Attribute.Relation<
       'api::author.author',
-      'manyToOne',
+      'oneToMany',
       'api::blog.blog'
     >;
     createdAt: Attribute.DateTime;
@@ -830,6 +830,7 @@ export interface ApiBlogBlog extends Schema.CollectionType {
     singularName: 'blog';
     pluralName: 'blogs';
     displayName: 'Blogs';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -859,9 +860,9 @@ export interface ApiBlogBlog extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    authors: Attribute.Relation<
+    author: Attribute.Relation<
       'api::blog.blog',
-      'oneToMany',
+      'manyToOne',
       'api::author.author'
     >;
     label: Attribute.String &

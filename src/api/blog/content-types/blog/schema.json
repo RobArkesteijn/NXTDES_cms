@@ -4,7 +4,8 @@
   "info": {
     "singularName": "blog",
     "pluralName": "blogs",
-    "displayName": "Blogs"
+    "displayName": "Blogs",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -40,11 +41,11 @@
       },
       "type": "date"
     },
-    "authors": {
+    "author": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToOne",
       "target": "api::author.author",
-      "mappedBy": "blog"
+      "inversedBy": "blogs"
     },
     "label": {
       "pluginOptions": {
@@ -55,11 +56,12 @@
       "type": "string"
     },
     "hero_image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
       ],
-      "type": "media",
-      "multiple": false,
       "pluginOptions": {
         "i18n": {
           "localized": true
