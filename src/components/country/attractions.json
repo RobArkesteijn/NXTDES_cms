@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_country_attractions",
+  "info": {
+    "displayName": "Attractions"
+  },
+  "options": {},
+  "attributes": {
+    "attraction": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}

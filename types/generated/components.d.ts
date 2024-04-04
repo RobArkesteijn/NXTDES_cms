@@ -1,12 +1,14 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
-export interface CountryCityList extends Schema.Component {
-  collectionName: 'components_country_city_lists';
+export interface CountryAttractions extends Schema.Component {
+  collectionName: 'components_country_attractions';
   info: {
-    displayName: 'City List';
+    displayName: 'Attractions';
   };
   attributes: {
-    city: Attribute.String & Attribute.Required;
+    attraction: Attribute.String & Attribute.Required;
+    description: Attribute.Text;
+    image: Attribute.Media;
   };
 }
 
@@ -38,7 +40,7 @@ export interface HomeHiglightedCountries extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
-      'country.city-list': CountryCityList;
+      'country.attractions': CountryAttractions;
       'home.highlighted': HomeHighlighted;
       'home.higlighted-countries': HomeHiglightedCountries;
     }

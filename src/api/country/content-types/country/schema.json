@@ -24,12 +24,6 @@
       "type": "richtext",
       "required": true
     },
-    "city_list": {
-      "displayName": "City List",
-      "type": "component",
-      "repeatable": true,
-      "component": "country.city-list"
-    },
     "hero_image": {
       "type": "media",
       "multiple": false,
@@ -57,6 +51,12 @@
     },
     "country_native": {
       "type": "string"
+    },
+    "attractions": {
+      "displayName": "Attractions",
+      "type": "component",
+      "repeatable": true,
+      "component": "country.attractions"
     }
   }
 }

@@ -893,32 +893,6 @@ export interface ApiBlogBlog extends Schema.CollectionType {
   };
 }
 
-export interface ApiCityCity extends Schema.CollectionType {
-  collectionName: 'cities';
-  info: {
-    singularName: 'city';
-    pluralName: 'cities';
-    displayName: 'Cities';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    description: Attribute.RichText & Attribute.Required;
-    hero_image: Attribute.Media & Attribute.Required;
-    city: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::city.city', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::city.city', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
 export interface ApiCountryCountry extends Schema.CollectionType {
   collectionName: 'countries';
   info: {
@@ -934,13 +908,13 @@ export interface ApiCountryCountry extends Schema.CollectionType {
     country: Attribute.String & Attribute.Required;
     title: Attribute.String & Attribute.Required;
     description: Attribute.RichText & Attribute.Required;
-    city_list: Attribute.Component<'country.city-list', true>;
     hero_image: Attribute.Media & Attribute.Required;
     icon: Attribute.String;
     continent: Attribute.Enumeration<
       ['Europe', 'Africa', 'Asia', 'North America', 'South America', 'Oceania']
     >;
     country_native: Attribute.String;
+    attractions: Attribute.Component<'country.attractions', true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1017,93 +991,6 @@ export interface ApiHomeHome extends Schema.SingleType {
   };
 }
 
-export interface ApiUpcDestinationUpcDestination extends Schema.CollectionType {
-  collectionName: 'upc_destinations';
-  info: {
-    singularName: 'upc-destination';
-    pluralName: 'upc-destinations';
-    displayName: 'UpcDestinations';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
-  attributes: {
-    destination: Attribute.String &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    icon: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    continent: Attribute.Enumeration<
-      ['Europe', 'Africa', 'Asia', 'North America', 'South America', 'Oceania']
-    > &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    country_native: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    hero_image: Attribute.Media &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    title: Attribute.String &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    description: Attribute.RichText &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::upc-destination.upc-destination',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::upc-destination.upc-destination',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    localizations: Attribute.Relation<
-      'api::upc-destination.upc-destination',
-      'oneToMany',
-      'api::upc-destination.upc-destination'
-    >;
-    locale: Attribute.String;
-  };
-}
-
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1124,10 +1011,8 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::author.author': ApiAuthorAuthor;
       'api::blog.blog': ApiBlogBlog;
-      'api::city.city': ApiCityCity;
       'api::country.country': ApiCountryCountry;
       'api::home.home': ApiHomeHome;
-      'api::upc-destination.upc-destination': ApiUpcDestinationUpcDestination;
     }
   }
 }
