@@ -915,6 +915,7 @@ export interface ApiCountryCountry extends Schema.CollectionType {
     >;
     country_native: Attribute.String;
     attractions: Attribute.Component<'country.attractions', true>;
+    flag_image: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
