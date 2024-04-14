@@ -909,13 +909,13 @@ export interface ApiCountryCountry extends Schema.CollectionType {
     title: Attribute.String & Attribute.Required;
     description: Attribute.RichText & Attribute.Required;
     hero_image: Attribute.Media & Attribute.Required;
-    icon: Attribute.String;
     continent: Attribute.Enumeration<
       ['Europe', 'Africa', 'Asia', 'North America', 'South America', 'Oceania']
     >;
     country_native: Attribute.String;
     attractions: Attribute.Component<'country.attractions', true>;
     flag_image: Attribute.Media;
+    currency: Attribute.String & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
