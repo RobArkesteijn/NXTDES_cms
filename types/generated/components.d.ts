@@ -4,6 +4,7 @@ export interface CountryAttractions extends Schema.Component {
   collectionName: 'components_country_attractions';
   info: {
     displayName: 'Attractions';
+    description: '';
   };
   attributes: {
     attraction: Attribute.String & Attribute.Required;
