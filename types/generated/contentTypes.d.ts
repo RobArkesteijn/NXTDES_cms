@@ -800,7 +800,7 @@ export interface ApiAuthorAuthor extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String & Attribute.Required;
-    avatar: Attribute.Media & Attribute.Required;
+    avatar: Attribute.Media<'images'> & Attribute.Required;
     blogs: Attribute.Relation<
       'api::author.author',
       'oneToMany',
@@ -865,13 +865,13 @@ export interface ApiBlogBlog extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    hero_image: Attribute.Media &
+    hero_image: Attribute.Media<'images'> &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
-    description: Attribute.RichText &
+    description: Attribute.Text &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: false;
@@ -907,14 +907,15 @@ export interface ApiCountryCountry extends Schema.CollectionType {
   attributes: {
     country: Attribute.String & Attribute.Required;
     title: Attribute.String & Attribute.Required;
-    description: Attribute.RichText & Attribute.Required;
-    hero_image: Attribute.Media & Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+    hero_image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Attribute.Required;
     continent: Attribute.Enumeration<
       ['Europe', 'Africa', 'Asia', 'North America', 'South America', 'Oceania']
     >;
     country_native: Attribute.String;
     attractions: Attribute.Component<'country.attractions', true>;
-    flag_image: Attribute.Media;
+    flag_image: Attribute.Media<'images'>;
     currency: Attribute.String & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -931,6 +932,50 @@ export interface ApiCountryCountry extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
+  };
+}
+
+export interface ApiFaqFaq extends Schema.CollectionType {
+  collectionName: 'faqs';
+  info: {
+    singularName: 'faq';
+    pluralName: 'faqs';
+    displayName: 'FAQ';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    question: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    answer: Attribute.RichText &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::faq.faq', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::faq.faq', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::faq.faq',
+      'oneToMany',
+      'api::faq.faq'
+    >;
+    locale: Attribute.String;
   };
 }
 
@@ -951,7 +996,7 @@ export interface ApiHomeHome extends Schema.SingleType {
     };
   };
   attributes: {
-    hero_image: Attribute.Media &
+    hero_image: Attribute.Media<'images' | 'videos'> &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -1013,6 +1058,7 @@ declare module '@strapi/types' {
       'api::author.author': ApiAuthorAuthor;
       'api::blog.blog': ApiBlogBlog;
       'api::country.country': ApiCountryCountry;
+      'api::faq.faq': ApiFaqFaq;
       'api::home.home': ApiHomeHome;
     }
   }

@@ -1,15 +1,13 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
-export interface CountryAttractions extends Schema.Component {
-  collectionName: 'components_country_attractions';
+export interface HomeHiglightedCountries extends Schema.Component {
+  collectionName: 'components_home_higlighted_countries';
   info: {
-    displayName: 'Attractions';
-    description: '';
+    displayName: 'HiglightedCountries';
   };
   attributes: {
-    attraction: Attribute.String & Attribute.Required;
-    description: Attribute.Text;
-    image: Attribute.Media;
+    country: Attribute.String;
+    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
   };
 }
 
@@ -22,28 +20,30 @@ export interface HomeHighlighted extends Schema.Component {
   attributes: {
     headline: Attribute.String;
     title: Attribute.String & Attribute.Required;
-    description: Attribute.RichText;
+    description: Attribute.Text;
     countries: Attribute.Component<'home.higlighted-countries', true>;
   };
 }
 
-export interface HomeHiglightedCountries extends Schema.Component {
-  collectionName: 'components_home_higlighted_countries';
+export interface CountryAttractions extends Schema.Component {
+  collectionName: 'components_country_attractions';
   info: {
-    displayName: 'HiglightedCountries';
+    displayName: 'Attractions';
+    description: '';
   };
   attributes: {
-    country: Attribute.String;
-    image: Attribute.Media;
+    attraction: Attribute.String & Attribute.Required;
+    description: Attribute.Text;
+    image: Attribute.Media<'images'>;
   };
 }
 
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
-      'country.attractions': CountryAttractions;
-      'home.highlighted': HomeHighlighted;
       'home.higlighted-countries': HomeHiglightedCountries;
+      'home.highlighted': HomeHighlighted;
+      'country.attractions': CountryAttractions;
     }
   }
 }
